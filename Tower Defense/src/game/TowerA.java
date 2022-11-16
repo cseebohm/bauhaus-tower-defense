@@ -1,10 +1,11 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class TowerA extends GameObject{
 
-    Control control;
+    BufferedImage image;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -12,23 +13,20 @@ public class TowerA extends GameObject{
      * 
      * @param control
      */
-    public TowerA(Control control)
+    public TowerA(BufferedImage towerA)
     {        
         isVisible = true;
         isExpired = false;
-        
-        this.control = control;
+
+        this.image = towerA;
     }
     
 	@Override
-	public void update(double timeElapsed) {
-		// TODO Auto-generated method stub
-		
+	public void update(double timeElapsed) {		
 	}
 
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawImage(control.getImage("towerA1.png"), 15, 150, null);	
+		g.drawImage(image, 15, 150, null);	
 	}
 
 }

@@ -9,11 +9,15 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+
+import path.Path;
 
 public class EnemyA extends GameObject{
 	
 	private double percentage;
-    Control control;
+    BufferedImage image;
+    Path path;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -21,14 +25,15 @@ public class EnemyA extends GameObject{
      * 
      * @param control
      */
-    public EnemyA(Control control)
+    public EnemyA(Path path, BufferedImage enemyA)
     {
     	this.percentage = 0;
         
         isVisible = true;
         isExpired = false;
         
-        this.control = control;
+        this.image = enemyA;
+        this.path = path;
     }
 
     /**
@@ -50,8 +55,8 @@ public class EnemyA extends GameObject{
      * @param Graphics g 
      */
 	public void draw(Graphics g) {
-		Point p = control.getPath().convertToCoordinates(percentage);
-		g.drawImage(control.getImage("enemyA.png"), p.x - 10, p.y - 10, null);	
+		Point p = path.convertToCoordinates(percentage);
+		g.drawImage(image, p.x - 10, p.y - 10, null);	
 	}
 
 }

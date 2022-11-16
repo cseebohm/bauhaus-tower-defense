@@ -42,25 +42,22 @@ public class Control extends JPanel implements Runnable, ActionListener {
      */
 	public void run() 
 	{	
-		try {
-		ClassLoader myLoader = this.getClass().getClassLoader();
-        InputStream pathStream = myLoader.getResourceAsStream("resources/path.txt");
-        Scanner pathScanner = new Scanner(pathStream);
-        path = new Path(pathScanner);
-		}
-		
-		//should be IOException
-		catch(Exception e) {
-			System.out.println("Error loading path");
-		}
-        
+        //load path
+        loadPath();
+
+        //load images
+        BufferedImage background = getImage("bauhausBackground.png");
+        BufferedImage enemyA = getImage("enemyA.png");
+        BufferedImage towerA = getImage("towerA.png");
+
+        //create state and view objects
 		state = new State();
 		view = new View(this, state);
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
-        state.addGameObject(new Background(this));  // Add one background object to our list
-        state.addGameObject(new EnemyA(this));  // Add one enemy to our list
-        state.addGameObject(new TowerA(this)); // Add tower
+        state.addGameObject(new Background(background));  // Add one background object to our list
+        state.addGameObject(new EnemyA(path, enemyA));  // Add one enemy to our list
+        state.addGameObject(new TowerA(towerA)); // Add tower
         state.finishFrame();    // Mark the next frame as ready
 
         repaint();           // Draw it.
@@ -77,7 +74,25 @@ public class Control extends JPanel implements Runnable, ActionListener {
 	{
 		return this.path;
 	}
-	
+
+    /**
+     * Loads the path
+     */
+	public void loadPath()
+	{
+        try {
+            ClassLoader myLoader = this.getClass().getClassLoader();
+            InputStream pathStream = myLoader.getResourceAsStream("resources/path.txt");
+            Scanner pathScanner = new Scanner(pathStream);
+            path = new Path(pathScanner);
+            }
+            
+            //should be IOException
+            catch(Exception e) {
+                System.out.println("Error loading path");
+            }
+	}
+
 	/**
      * Load buffered image
      */
