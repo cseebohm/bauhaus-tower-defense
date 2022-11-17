@@ -52,8 +52,13 @@ public class State {
      */
     public void finishFrame ()
     {
+        for (GameObject go : getFrameObjects())
+            if(go.isExpired == true)
+                //remove object
+                removeGameObject(go);
+
         currentFrameGameObjects = nextFrameGameObjects;
-        nextFrameGameObjects = null;  // I added this -- it makes it clear there is only a current list now.
+        //nextFrameGameObjects = null;  // I added this -- it makes it clear there is only a current list now.
     }
     
     /**
@@ -66,6 +71,14 @@ public class State {
         nextFrameGameObjects.add(go);
     }
     
-	
+	/**
+     * a helper method for removing game objects to the next frame of the game.
+     * 
+     * @param go
+     */
+    public void removeGameObject (GameObject go)
+    {
+        nextFrameGameObjects.remove(go);
+    }
 	
 }

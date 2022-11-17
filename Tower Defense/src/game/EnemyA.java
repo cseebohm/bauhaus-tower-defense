@@ -12,20 +12,23 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import path.Path;
+import game.State;
 
 public class EnemyA extends GameObject{
 	
 	private double percentage;
     BufferedImage image;
     Path path;
+    State state;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
      * the enemy is visible and not expired
      * 
-     * @param control
+     * @param Path
+     * @param BufferedImage
      */
-    public EnemyA(Path path, BufferedImage enemyA)
+    public EnemyA(Path path, BufferedImage enemyA, State state)
     {
     	this.percentage = 0;
         
@@ -34,6 +37,7 @@ public class EnemyA extends GameObject{
         
         this.image = enemyA;
         this.path = path;
+        this.state = state;
     }
 
     /**
@@ -45,8 +49,10 @@ public class EnemyA extends GameObject{
 		//update the percentage by .1 percent
 		percentage += 0.001;
 		
-		if(percentage >= (1))
-			isVisible = false;
+		if(percentage >= (1)){
+			isExpired = true;
+            state.addGameObject(new EnemyA(path, image, state));
+        }
 	}
 
     /**

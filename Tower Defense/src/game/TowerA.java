@@ -15,7 +15,7 @@ public class TowerA extends GameObject{
      */
     public TowerA(BufferedImage towerA)
     {        
-        isVisible = true;
+        isVisible = false;
         isExpired = false;
 
         this.image = towerA;

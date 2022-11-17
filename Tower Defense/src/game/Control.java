@@ -26,6 +26,10 @@ public class Control extends JPanel implements Runnable, ActionListener {
 	State state;
 	
 	Path path;
+
+    BufferedImage background;
+    BufferedImage enemyA;
+    BufferedImage towerA; 
 	
 	public Control() 
 	{
@@ -46,22 +50,23 @@ public class Control extends JPanel implements Runnable, ActionListener {
         loadPath();
 
         //load images
-        BufferedImage background = getImage("bauhausBackground.png");
-        BufferedImage enemyA = getImage("enemyA.png");
-        BufferedImage towerA = getImage("towerA.png");
+        loadImage();
+        System.out.println("Load Images!");
 
         //create state and view objects
 		state = new State();
 		view = new View(this, state);
 		
+        //initialize state
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(background));  // Add one background object to our list
-        state.addGameObject(new EnemyA(path, enemyA));  // Add one enemy to our list
+        state.addGameObject(new EnemyA(path, enemyA, state));  // Add one enemy to our list
         state.addGameObject(new TowerA(towerA)); // Add tower
         state.finishFrame();    // Mark the next frame as ready
 
         repaint();           // Draw it.
         
+        //start the timer
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
         
@@ -92,6 +97,16 @@ public class Control extends JPanel implements Runnable, ActionListener {
                 System.out.println("Error loading path");
             }
 	}
+
+    /**
+     * Loads the images
+     */
+	public void loadImage()
+	{
+        this.background = getImage("bauhausBackground.png");
+        this.enemyA = getImage("enemyA.png");
+        this.towerA = getImage("towerA.png");
+    }
 
 	/**
      * Load buffered image
