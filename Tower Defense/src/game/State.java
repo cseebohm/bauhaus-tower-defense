@@ -18,6 +18,8 @@ public class State {
     int lives;
     int money;
     int score;
+
+    int enemyCount;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -27,10 +29,12 @@ public class State {
     {
         currentFrameGameObjects = new ArrayList<GameObject>();
 
-        //initialize lives to 3 and money to 500
-        lives = 3;
-        money = 5000;
+        //initialize lives to 5 and money to 500
+        lives = 5;
+        money = 500;
         score = 0;
+
+        enemyCount = 0;
     }
     
     /**
@@ -106,12 +110,10 @@ public class State {
      */
     public void changeLives (int lifeChange)
     {
-        this.lives += lifeChange;
-
-        if(lives < 0)
-            System.out.println("Game Over!");
+        if(lives + lifeChange > 0)
+            this.lives += lifeChange;
         else
-            System.out.println("# of Lives: " + lives);
+            this.lives = 0;
     }
     
     /**
@@ -153,5 +155,25 @@ public class State {
     public void changeScore (int scoreChange)
     {
         this.score += scoreChange;
+    }
+
+    /**
+     * an accessor method for enemyCount
+     * 
+     * @return score
+     */
+    public int getEnemyCount ()
+    {
+        return this.enemyCount;
+    }
+
+    /**
+     * a mutator method for score
+     * 
+     * @param int 
+     */
+    public void changeEnemyCount (int enemyChange)
+    {
+        this.enemyCount += enemyChange;
     }
 }

@@ -19,6 +19,8 @@ public class EnemyA extends GameObject {
     BufferedImage image;
     Path path;
     State state;
+
+    boolean spawnFlag;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -37,6 +39,8 @@ public class EnemyA extends GameObject {
         this.image = enemyA;
         this.path = path;
         this.state = state;
+        
+        spawnFlag = true;
     }
 
     /**
@@ -48,12 +52,18 @@ public class EnemyA extends GameObject {
 		//update the percentage by .1 percent
 		percentage += 0.001;
 		
+        if(state.getEnemyCount()<6 && percentage>.04 && spawnFlag){
+                state.addGameObject(new EnemyA(path, image, state));
+                state.changeEnemyCount(1);
+                spawnFlag = false;
+        }
 		if(percentage >= (1)){
 			//expire current enemy
             isExpired = true;
 
             //spawn new enemy
             state.addGameObject(new EnemyA(path, image, state));
+            state.changeEnemyCount(1);
 
             //lose life
             state.changeLives(-1);

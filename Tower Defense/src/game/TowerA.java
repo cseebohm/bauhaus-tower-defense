@@ -29,14 +29,14 @@ public class TowerA extends GameObject implements Clickable{
         this.control = control;
         this.state = state;
 
-        this.x = control.getMouseX();
-        this.y = control.getMouseY();
+        this.x = control.getMouseX()-20;
+        this.y = control.getMouseY()-20;
     }
     
 	public void update(double timeElapsed) {
         if(isMoving){
-            this.x = control.getMouseX();
-            this.y = control.getMouseY();
+            this.x = control.getMouseX()-20;
+            this.y = control.getMouseY()-20;
             consumeClick();
         }		
 	}

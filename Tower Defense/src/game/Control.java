@@ -60,7 +60,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 
         //load images
         loadImage();
-        System.out.println("Load Images!");
 
         //create state and view objects
 		state = new State();
@@ -86,6 +85,22 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         
 	}
 	
+    /**
+     * Method is called 16x/s after timer is started
+     */
+    public void actionPerformed(ActionEvent e) {
+
+        state.startFrame();
+        
+        for (GameObject go : state.getFrameObjects())
+            go.update(0);    
+        
+        state.finishFrame();
+        view.repaint();
+
+        mouseClick = false;
+	}
+
 	/**
      * Accessor method for the path
      */
@@ -120,6 +135,8 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         this.background = getImage("bauhausBackground.png");
         this.enemyA = getImage("enemyA.png");
         this.towerA = getImage("towerA.png");
+
+        System.out.println("load images!");
     }
 
 	/**
@@ -142,68 +159,52 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         }
     }
 
-	public void actionPerformed(ActionEvent e) {
-
-        state.startFrame();
-        
-        for (GameObject go : state.getFrameObjects())
-            go.update(0);    
-        
-        state.finishFrame();
-        view.repaint();
-
-        mouseClick = false;
-	}
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
+    /**
+     * method sets mouse position when it is moved
+     */
     public void mouseMoved(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
     }
 
+    /** 
+     * accessor method for x location of the mouse
+     * 
+     * @return mouseX
+     */
     public int getMouseX(){
         return mouseX;
     }
 
+    /**
+     * accessor mehtod for y location of the mouse
+     * 
+     * @return mouseY
+     */
     public int getMouseY(){
         return mouseY;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
+    /**
+     * method to track mouse clicks
+     */
     public void mouseReleased(MouseEvent e) {
         this.mouseClick = true;
         
     }
 
+    /**
+     * accessor method for mouse clicks
+     * @return boolean mouseClick
+     */
     public boolean getClick(){
         return mouseClick;
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
+    //unnecessary methods from mouseListener and mouseMotionListener
+    public void mouseDragged(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
 }
