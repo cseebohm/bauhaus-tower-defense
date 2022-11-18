@@ -17,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -81,8 +82,8 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
         f.setJMenuBar(menuBar);
         
         // set sizes
-        this.setMinimumSize(new Dimension(600, 600));
-        this.setPreferredSize(new Dimension(600, 600));
+        this.setMinimumSize(new Dimension(800, 600));
+        this.setPreferredSize(new Dimension(800, 600));
         
         f.setContentPane(this); 
  
@@ -106,12 +107,12 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
         
         try 
         {
-            backdrop = javax.imageio.ImageIO.read(new File("bauhausBackground.png"));
+            backdrop = getImage("bauhausBackground_wide.png");
             g.drawImage(backdrop, 0, 0, null);
             
         } 
         
-        catch (IOException e) 
+        catch (Exception e) 
         {
             System.out.println("Error drawing background image");
         }   
@@ -240,6 +241,23 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
 		// the screen.  We must redraw it.)
 		repaint();
 	}
+
+	public BufferedImage getImage (String filename)
+    {
+        try
+        {
+            ClassLoader myLoader = this.getClass().getClassLoader();
+            InputStream imageStream = myLoader.getResourceAsStream("resources/" + filename);
+            BufferedImage image = javax.imageio.ImageIO.read(imageStream);
+            return image;
+        }
+        catch (IOException e)
+        {
+            System.out.println("Could not find or load resources/" + filename);
+            System.exit(0);  // Close the frame, bail out.
+            return null;  // Does not happen, the application has exited.
+        }
+    }
 }
 
 

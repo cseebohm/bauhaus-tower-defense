@@ -12,7 +12,6 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import path.Path;
-import game.State;
 
 public class EnemyA extends GameObject{
 	
@@ -50,8 +49,14 @@ public class EnemyA extends GameObject{
 		percentage += 0.001;
 		
 		if(percentage >= (1)){
-			isExpired = true;
+			//expire current enemy
+            isExpired = true;
+
+            //spawn new enemy
             state.addGameObject(new EnemyA(path, image, state));
+
+            //lose life
+            state.changeLives(-1);
         }
 	}
 

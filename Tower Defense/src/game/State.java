@@ -14,6 +14,10 @@ public class State {
 	
 	List<GameObject> currentFrameGameObjects;
     List<GameObject> nextFrameGameObjects;
+
+    int lives;
+    int money;
+    int score;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -22,6 +26,11 @@ public class State {
     public State()
     {
         currentFrameGameObjects = new ArrayList<GameObject>();
+
+        //initialize lives to 3 and money to 500
+        lives = 3;
+        money = 500;
+        score = 0;
     }
     
     /**
@@ -81,4 +90,67 @@ public class State {
         nextFrameGameObjects.remove(go);
     }
 	
+    /**
+     * an accessor method for lives
+     * 
+     * @return lives
+     */
+    public int getLives () {
+        return this.lives;
+    }
+
+    /**
+     * a mutator method for lives
+     * 
+     * @param lifeChange
+     */
+    public void changeLives (int lifeChange)
+    {
+        this.lives += lifeChange;
+
+        if(lives < 0)
+            System.out.println("Game Over!");
+        else
+            System.out.println("# of Lives: " + lives);
+    }
+    
+    /**
+     * an accessor method for money
+     * 
+     * @return money
+     */
+    public int getMoney ()
+    {
+        return this.money;
+    }
+
+    /**
+     * a mutator method for money
+     * 
+     * @param moneyChange
+     */
+    public void changeMoney (int moneyChange)
+    {
+        this.money += moneyChange;
+    }
+
+    /**
+     * an accessor method for score
+     * 
+     * @return score
+     */
+    public int getScore ()
+    {
+        return this.score;
+    }
+
+    /**
+     * a mutator method for score
+     * 
+     * @param int 
+     */
+    public void changeScore (int scoreChange)
+    {
+        this.score += scoreChange;
+    }
 }
