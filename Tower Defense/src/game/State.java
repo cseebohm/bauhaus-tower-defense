@@ -29,7 +29,7 @@ public class State {
 
         //initialize lives to 3 and money to 500
         lives = 3;
-        money = 500;
+        money = 5000;
         score = 0;
     }
     
@@ -131,7 +131,8 @@ public class State {
      */
     public void changeMoney (int moneyChange)
     {
-        this.money += moneyChange;
+        if(money+moneyChange >= 0)
+            this.money += moneyChange;
     }
 
     /**

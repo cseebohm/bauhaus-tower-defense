@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 import path.Path;
 
-public class EnemyA extends GameObject{
+public class EnemyA extends GameObject {
 	
 	private double percentage;
     BufferedImage image;
@@ -69,5 +69,4 @@ public class EnemyA extends GameObject{
 		Point p = path.convertToCoordinates(percentage);
 		g.drawImage(image, p.x - 10, p.y - 10, null);	
 	}
-
 }

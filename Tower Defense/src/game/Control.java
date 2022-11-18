@@ -32,6 +32,10 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 	
 	Path path;
 
+    int mouseX;
+    int mouseY;
+    boolean mouseClick;
+
     BufferedImage background;
     BufferedImage enemyA;
     BufferedImage towerA; 
@@ -62,11 +66,15 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 		state = new State();
 		view = new View(this, state);
 		
+        //add mouse listeners to view
+        view.addMouseListener(this);
+        view.addMouseMotionListener(this);
+
         //initialize state
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(background));  // Add one background object to our list
         state.addGameObject(new EnemyA(path, enemyA, state));  // Add one enemy to our list
-        state.addGameObject(new TowerA(towerA)); // Add tower
+        state.addGameObject(new TowerAButton(towerA, this, state)); // Add towerA button
         state.addGameObject(new Menu(state));
         state.finishFrame();    // Mark the next frame as ready
 
@@ -143,6 +151,8 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         
         state.finishFrame();
         view.repaint();
+
+        mouseClick = false;
 	}
 
     @Override
@@ -151,10 +161,17 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         
     }
 
-    @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
+        mouseX = e.getX();
+        mouseY = e.getY();
+    }
+
+    public int getMouseX(){
+        return mouseX;
+    }
+
+    public int getMouseY(){
+        return mouseY;
     }
 
     @Override
@@ -169,10 +186,13 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        this.mouseClick = true;
         
+    }
+
+    public boolean getClick(){
+        return mouseClick;
     }
 
     @Override
