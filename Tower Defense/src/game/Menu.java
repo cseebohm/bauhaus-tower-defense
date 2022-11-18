@@ -3,7 +3,6 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
-import game.State;
 
 public class Menu extends GameObject{
 
