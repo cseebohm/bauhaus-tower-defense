@@ -29,7 +29,7 @@ public class View extends JPanel{
 		this.state = state;
 		
 		// make JFrame
-		JFrame f = new JFrame("bahaus.tower.defense");
+		JFrame f = new JFrame("bauhaus.tower.defense");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        
 		// set sizes

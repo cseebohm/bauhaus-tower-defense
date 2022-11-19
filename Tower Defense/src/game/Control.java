@@ -149,6 +149,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
             ClassLoader myLoader = this.getClass().getClassLoader();
             InputStream imageStream = myLoader.getResourceAsStream("resources/" + filename);
             BufferedImage image = javax.imageio.ImageIO.read(imageStream);
+            System.out.println(filename);
             return image;
         }
         catch (IOException e)

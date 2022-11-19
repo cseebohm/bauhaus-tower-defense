@@ -2,7 +2,7 @@
  * this class defines enemyA 
  * 
  * @author  Clarissa Seebohm
- * @version November 14, 2022
+ * @version November 18, 2022
  */
 
 package game;

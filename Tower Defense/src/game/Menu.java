@@ -38,16 +38,16 @@ public class Menu extends GameObject{
         
         //draw title
 		g.setFont(new Font( "CooperBlackStd-Italic", Font.PLAIN, 22));
-        g.drawString("Bahaus", 490, 30);
+        g.drawString("Bauhaus", 490, 30);
 
-		g.setFont(new Font( "CooperBlackStd", Font.PLAIN, 11));
+		g.setFont(new Font( "CooperBlackStd", Font.PLAIN, 12));
         g.drawString("tower defense", 505, 42);
 
         //draw game state
-		g.setFont(new Font( "CooperBlackStd-Italic", Font.PLAIN, 14));
-        g.drawString(("score: " + state.getScore()), 483,65);
-        g.drawString(("lives: " + state.getLives()), 476,80);
-        g.drawString(("money: $" + state.getMoney()), 469,95);
+		g.setFont(new Font( "Serif", Font.BOLD, 11));
+        g.drawString(("SCORE: " + state.getScore()), 483,65);
+        g.drawString(("LIVES: " + state.getLives()), 476,80);
+        g.drawString(("MONEY: $" + state.getMoney()), 469,95);
     }
 
     //unused methods
