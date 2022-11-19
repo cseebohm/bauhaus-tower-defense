@@ -39,7 +39,6 @@ public class Background extends GameObject{
 	 * @param Graphics g
 	 */
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
 		g.drawImage(background, 0, 0, null);
 	}
 
