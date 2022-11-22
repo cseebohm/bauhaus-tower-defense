@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 
 public class TowerA extends GameObject implements Clickable{
 
-    BufferedImage image;
     Control control;
     State state;
     
@@ -28,13 +27,12 @@ public class TowerA extends GameObject implements Clickable{
      * @param control
      * @param state
      */
-    public TowerA(BufferedImage towerA, Control control, State state)
+    public TowerA(Control control, State state)
     {        
         isVisible = true;
         isExpired = false;
         isMoving = true;
 
-        this.image = towerA;
         this.control = control;
         this.state = state;
 
@@ -50,6 +48,7 @@ public class TowerA extends GameObject implements Clickable{
      */
 	public void update(double timeElapsed) {
         if(isMoving){
+
             this.x = control.getMouseX()-20;
             this.y = control.getMouseY()-20;
             consumeClick();
@@ -62,7 +61,7 @@ public class TowerA extends GameObject implements Clickable{
      * @param Graphics g
      */
 	public void draw(Graphics g) {
-		g.drawImage(image, this.x, this.y, null);	
+		g.drawImage(control.getImage("towerA.png"), this.x, this.y, null);	
 	}
 
     /**
@@ -73,6 +72,10 @@ public class TowerA extends GameObject implements Clickable{
     public void consumeClick() {
         if(control.getClick())
             isMoving=false;
+
+        //out of bounds, remove game object
+        if(this.x<0 || this.x>600 || this.y<0 || this.y>600)
+            isMoving=true;
     }
 
 }

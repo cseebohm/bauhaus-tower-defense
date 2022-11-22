@@ -15,7 +15,6 @@ public class TowerAButton extends GameObject implements Clickable{
 
     Control control;
     State state;
-    BufferedImage image;
 
     /**
      * constructor for the tower A button 
@@ -24,11 +23,10 @@ public class TowerAButton extends GameObject implements Clickable{
      * @param control
      * @param state
      */
-    public TowerAButton(BufferedImage towerA, Control control, State state){
+    public TowerAButton(Control control, State state){
         isVisible = true;
         isExpired = false;
 
-        this.image = towerA;
         this.control = control;
         this.state = state;
     }
@@ -56,7 +54,7 @@ public class TowerAButton extends GameObject implements Clickable{
         g.setColor(Color.white);
         g.fillRoundRect(x, y, 26, 26, 5,5);
 
-        g.drawImage(image, x+3, y+3, 20,20, null);
+        g.drawImage(control.getImage("towerA.png"), x+3, y+3, 20,20, null);
 
         g.setColor(Color.black);
 		g.setFont(new Font( "Serif", Font.PLAIN, 9));
@@ -74,7 +72,7 @@ public class TowerAButton extends GameObject implements Clickable{
                 if(state.getMoney()>=250)
                 {
                     //add tower and charge money
-                    state.addGameObject(new TowerA(image, control, state));
+                    state.addGameObject(new TowerA(control, state));
                     state.changeMoney(-250);
                 }
             }

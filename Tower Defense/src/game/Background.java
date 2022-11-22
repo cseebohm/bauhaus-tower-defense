@@ -8,23 +8,25 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+
 
 public class Background extends GameObject{
 	
-	BufferedImage background;
+	private State state;
+	private Control control;
 	
 	/**
 	 * this constructor makes a background object
 	 * 
 	 * @param BufferedImage Background
 	 */
-	public Background(BufferedImage background)
+	public Background(Control control, State state)
 	{
 		isVisible = true;
         isExpired = false;
 
-		this.background = background;
+		this.state = state;
+		this.control = control;
 	}
 
 	@Override
@@ -39,7 +41,7 @@ public class Background extends GameObject{
 	 * @param Graphics g
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(control.getImage("bauhausBackground.png"), 0, 0, null);
 	}
 
 }

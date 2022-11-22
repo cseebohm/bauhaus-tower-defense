@@ -16,11 +16,11 @@ import path.Path;
 public class EnemyA extends GameObject {
 	
 	private double percentage;
-    BufferedImage image;
-    Path path;
-    State state;
 
-    boolean spawnFlag;
+    Path path;
+    
+    private State state;
+	private Control control;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -29,18 +29,17 @@ public class EnemyA extends GameObject {
      * @param Path
      * @param BufferedImage
      */
-    public EnemyA(Path path, BufferedImage enemyA, State state)
+    public EnemyA(Path path, Control control, State state)
     {
     	this.percentage = 0;
         
         isVisible = true;
         isExpired = false;
         
-        this.image = enemyA;
         this.path = path;
+
         this.state = state;
-        
-        spawnFlag = true;
+        this.control = control;
     }
 
     /**
@@ -52,17 +51,12 @@ public class EnemyA extends GameObject {
 		//update the percentage by .1 percent
 		percentage += 0.001;
 		
-        if(state.getEnemyCount()<6 && percentage>.04 && spawnFlag){
-                state.addGameObject(new EnemyA(path, image, state));
-                state.changeEnemyCount(1);
-                spawnFlag = false;
-        }
 		if(percentage >= (1)){
 			//expire current enemy
             isExpired = true;
 
             //spawn new enemy
-            state.addGameObject(new EnemyA(path, image, state));
+            state.addGameObject(new EnemyA(path, control, state));
             state.changeEnemyCount(1);
 
             //lose life
@@ -77,6 +71,6 @@ public class EnemyA extends GameObject {
      */
 	public void draw(Graphics g) {
 		Point p = path.convertToCoordinates(percentage);
-		g.drawImage(image, p.x - 10, p.y - 10, null);	
+		g.drawImage(control.getImage("enemyA.png"), p.x - 10, p.y - 10, null);	
 	}
 }
