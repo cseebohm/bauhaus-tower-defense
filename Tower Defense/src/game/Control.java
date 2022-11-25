@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -76,8 +77,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         state.addGameObject(new TowerAButton(this, state)); // Add towerA button
         state.addGameObject(new Menu(state));
         state.finishFrame();    // Mark the next frame as ready
-
-        repaint();           // Draw it.
         
         //start the timer
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
@@ -91,10 +90,20 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
     public void actionPerformed(ActionEvent e) {
 
         state.startFrame();
-        
+
+        if(state.getLives() > 0)
+        {
         for (GameObject go : state.getFrameObjects())
             go.update(0);    
-        
+        }
+
+        else 
+        {
+            state.setGameOver(true);
+            state.addGameObject(new GameOver(this, state));
+            
+        }
+
         state.finishFrame();
         view.repaint();
 

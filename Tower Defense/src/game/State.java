@@ -20,6 +20,14 @@ public class State {
     int score;
 
     int enemyCount;
+
+    boolean isGameOver;
+
+    double elapsedTime;
+    double totalTime;
+
+    private double startTime;
+    private double currentTime;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -29,12 +37,17 @@ public class State {
     {
         currentFrameGameObjects = new ArrayList<GameObject>();
 
-        //initialize lives to 5 and money to 500
-        lives = 5;
+        //initialize lives to 3 and money to 500
+        lives = 1;
         money = 500;
         score = 0;
 
         enemyCount = 0;
+        totalTime = 0;
+        
+        isGameOver = false;
+
+        startTime = System.currentTimeMillis();
     }
     
     /**
@@ -56,7 +69,13 @@ public class State {
     public void startFrame ()
     {
         nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
-        nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
+        nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list
+
+        this.currentTime = System.currentTimeMillis();
+        this.totalTime = this.currentTime - this.startTime;
+        this.elapsedTime = this.currentTime - this.totalTime;
+
+        System.out.println("Elapsed Time: " + currentTime);
     }
     
     /**
@@ -71,7 +90,6 @@ public class State {
                 removeGameObject(go);
 
         currentFrameGameObjects = nextFrameGameObjects;
-        //nextFrameGameObjects = null;  // I added this -- it makes it clear there is only a current list now.
     }
     
     /**
@@ -175,5 +193,35 @@ public class State {
     public void changeEnemyCount (int enemyChange)
     {
         this.enemyCount += enemyChange;
+    }
+
+    /**
+     * a mutator method for isGameOver
+     * 
+     * @param boolean
+     */
+    public void setGameOver (boolean isOver)
+    {
+        this.isGameOver = isOver;
+    }
+
+    /**
+     * an accessor method for elapsedTime
+     * 
+     * @return elapsedTime
+     */
+    public double getElapsedTime ()
+    {
+        return this.elapsedTime;
+    }
+
+    /**
+     * an accessor method for totalTime
+     * 
+     * @return elapsedTime
+     */
+    public double getTotalTime ()
+    {
+        return this.totalTime;
     }
 }

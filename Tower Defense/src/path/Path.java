@@ -176,15 +176,15 @@ public class Path {
  		double length = 0;
  		double [] segmentLength = new double[n];
  		 
- 		
  		//loop through segments to find length
 		for(int i=0; i<n-1; i++) {
- 			int x = this.getX(i+1) - this.getX(i);
- 			int y = this.getY(i+1) - this.getY(i);
- 			
- 			segmentLength[i] = pythagoras(x,y);
- 			length += segmentLength[i];
- 		}
+			int x = this.getX(i+1) - this.getX(i);
+			int y = this.getY(i+1) - this.getY(i);
+						
+			segmentLength[i] = pythagoras(x,y);
+			length += segmentLength[i];
+		}
+
  		
 		double currentLoc = percentTraveled * length;
  		double distanceCovered = 0;
@@ -207,7 +207,29 @@ public class Path {
  		
  		return location;
 	 	}
-	 
+	
+	/**
+	 * gets the length of the path in pixels
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public double getLength()
+	{
+		double length = 0;
+		double [] segmentLength = new double[n];
+
+	 		//loop through segments to find length
+			 for(int i=0; i<n-1; i++) {
+				int x = this.getX(i+1) - this.getX(i);
+				int y = this.getY(i+1) - this.getY(i);
+				
+				segmentLength[i] = pythagoras(x,y);
+				length += segmentLength[i];
+			}
+		return length;
+	}
 	/** 
 	 * performs the pythagorean theorem on a given x and y lengths
 	 * 

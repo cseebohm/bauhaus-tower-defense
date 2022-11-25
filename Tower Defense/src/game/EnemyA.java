@@ -48,8 +48,14 @@ public class EnemyA extends GameObject {
      * @param double timeElapsed
      */
 	public void update(double timeElapsed) {
-		//update the percentage by .1 percent
-		percentage += 0.001;
+		//move percentage by velocity of pixels per millisecond
+            //start with 1 pixels/second
+
+        double velocity = 1; 
+        double movePerFrame = velocity * state.getElapsedTime() * Math.pow(10, -12.0);
+		percentage += movePerFrame / control.getPath().getLength();
+
+        System.out.println("Percentage: " + percentage);
 		
 		if(percentage >= (1)){
 			//expire current enemy
