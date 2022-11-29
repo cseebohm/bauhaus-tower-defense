@@ -1,5 +1,5 @@
 /**
- * this class defines enemyA 
+ * this class defines enemyB 
  * 
  * @author  Clarissa Seebohm
  * @version November 18, 2022
@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 import path.Path;
 
-public class EnemyA extends GameObject {
+public class EnemyB extends GameObject {
 	
 	private double percentage;
     private double velocity;
@@ -24,13 +24,13 @@ public class EnemyA extends GameObject {
 	private Control control;
     
     /**
-     * this constructor makes one EnemyA object, the default percentage is zero
+     * this constructor makes one EnemyB object, the default percentage is zero
      * the enemy is visible and not expired
      * 
      * @param Path
      * @param BufferedImage
      */
-    public EnemyA(double velocity, Path path, Control control, State state)
+    public EnemyB(double velocity, Path path, Control control, State state)
     {
     	this.percentage = 0;
         
@@ -74,6 +74,6 @@ public class EnemyA extends GameObject {
      */
 	public void draw(Graphics g) {
 		Point p = path.convertToCoordinates(percentage);
-		g.drawImage(control.getImage("enemyA.png"), p.x - 10, p.y - 10, null);	
+		g.drawImage(control.getImage("enemyB.png"), p.x - 10, p.y - 10, null);	
 	}
 }

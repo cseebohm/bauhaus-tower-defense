@@ -38,7 +38,7 @@ public class State {
         currentFrameGameObjects = new ArrayList<GameObject>();
 
         //initialize lives to 3 and money to 500
-        lives = 1;
+        lives = 3;
         money = 500;
         score = 0;
 
@@ -74,8 +74,7 @@ public class State {
         this.currentTime = System.currentTimeMillis();
         this.totalTime = this.currentTime - this.startTime;
         this.elapsedTime = this.currentTime - this.totalTime;
-
-        System.out.println("Elapsed Time: " + currentTime);
+    
     }
     
     /**

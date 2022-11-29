@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -40,6 +39,9 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
     boolean mouseClick;
 
     private Map <String, BufferedImage> imageCache;
+
+    boolean levelOne;
+    double enemySpawnTime;
 
 	public Control() 
 	{
@@ -73,7 +75,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         //initialize state
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this, state));  // Add one background object to our list
-        state.addGameObject(new EnemyA(path, this, state));  // Add one enemy to our list
         state.addGameObject(new TowerAButton(this, state)); // Add towerA button
         state.addGameObject(new Menu(state));
         state.finishFrame();    // Mark the next frame as ready
@@ -81,6 +82,10 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         //start the timer
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
+
+        //initial level
+        levelOne = true;
+        enemySpawnTime = 0;
         
 	}
 	
@@ -90,19 +95,19 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
     public void actionPerformed(ActionEvent e) {
 
         state.startFrame();
-
-        if(state.getLives() > 0)
-        {
-        for (GameObject go : state.getFrameObjects())
-            go.update(0);    
-        }
-
-        else 
+        
+        //check lives
+        if(state.getLives() <= 0)
         {
             state.setGameOver(true);
             state.addGameObject(new GameOver(this, state));
             
         }
+
+        enemySpawnTime = levelOne(enemySpawnTime);
+
+        for (GameObject go : state.getFrameObjects())
+            go.update(0);    
 
         state.finishFrame();
         view.repaint();
@@ -234,6 +239,39 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 	public Object put(Object key, Object value) {
 		return null;
 	}
+
+    /**
+     * runs level one, for level one 5 enemyA objects spawn every .75s, then 3 enemyB objects spawn every .5s
+     * 
+     * @param enemySpawnTime
+     * @return enemySpawnTime
+     */
+    public double levelOne(double enemySpawnTime) {
+            
+        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
+        if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && state.getEnemyCount() < 5)
+        {
+    
+        state.addGameObject(new EnemyA((1), path, this, state));
+        state.changeEnemyCount(1);
+                
+        enemySpawnTime = state.getTotalTime();
+
+        }
+
+        //makes 2 enemyBs at every .5 seconds that move at a rate of 1.25 pixel per second
+        if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 8) && (state.getEnemyCount() >= 5)) 
+        {
+            System.out.println("Enemy B");
+            state.addGameObject(new EnemyB(1.25, path, this, state));
+            state.changeEnemyCount(1);
+                
+            enemySpawnTime = state.getTotalTime();
+        }
+
+        return enemySpawnTime;
+
+    }
 	
     //unnecessary methods from mouseListener and mouseMotionListener
     public void mouseDragged(MouseEvent e) {}
