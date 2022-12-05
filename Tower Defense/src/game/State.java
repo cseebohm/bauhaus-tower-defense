@@ -10,6 +10,7 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Point;
+import java.awt.Color;
 
 public class State {
 	
@@ -29,12 +30,14 @@ public class State {
 
     private double startTime;
     private double currentTime;
+
+    Control control;
 	
     /**
      * this constructor creates an empty list for the current frame
      * 
      */
-    public State()
+    public State(Control control)
     {
         currentFrameGameObjects = new ArrayList<GameObject>();
 
@@ -49,6 +52,8 @@ public class State {
         isGameOver = false;
 
         startTime = System.currentTimeMillis();
+
+        this.control = control;
     }
     
     /**
@@ -267,5 +272,41 @@ public class State {
         distance = (Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)));
 
         return distance;
+    }
+
+    /**
+     * this method returns the color of the background at a certain point x,y
+     * 
+     * @param x
+     * @param y
+     * @return Color
+     */
+    public Color getPixelColor(int x, int y){
+
+		java.awt.image.BufferedImage background = control.getImage("bauhausBackground.png");
+
+        int pixel = background.getRGB(x,y);
+
+        //Creating a Color object from pixel value
+        Color color = new Color(pixel, true);
+
+        return color;
+    }
+
+    /**
+     * this method returns the color of the path
+     * 
+     * @return Color
+     */
+    public Color getPathColor(){
+
+		java.awt.image.BufferedImage background = control.getImage("bauhausBackground.png");
+
+        int pixel = background.getRGB(300,0);
+
+        //Creating a Color object from pixel value
+        Color black = new Color(pixel, true);
+
+        return black;
     }
 }

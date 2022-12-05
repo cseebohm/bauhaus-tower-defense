@@ -27,6 +27,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
+import java.awt.Color;
+
 public class Control extends JPanel implements Runnable, ActionListener, MouseListener, MouseMotionListener {
 
 	View view;
@@ -65,7 +67,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         loadPath();
 
         //create state and view objects
-		state = new State();
+		state = new State(this);
 		view = new View(this, state);
 		
         //add mouse listeners to view
@@ -87,6 +89,11 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         //initial level
         levelOne = true;
         enemySpawnTime = 0;
+
+        //get pixel color test
+
+        Color test = state.getPixelColor(0, 0);
+        System.out.print(test);
         
 	}
 	

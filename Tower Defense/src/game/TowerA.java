@@ -107,6 +107,9 @@ public class TowerA extends GameObject implements Clickable{
         //out of bounds, remove game object
         if(this.x<0 || this.x>600 || this.y<0 || this.y>600)
             isMoving=true;
+        
+        else if(state.getPixelColor(this.x, this.y).equals(state.getPathColor()))
+            isMoving = true;
     }
 
 }
