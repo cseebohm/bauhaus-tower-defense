@@ -1,5 +1,5 @@
 /**
- * TowerA class defines tower type A, the lowest level tower
+ * TowerB class defines tower type A, the lowest level tower
  * 
  * @author  Clarissa Seebohm
  * @version November 18, 2022
@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.Point;
 
-public class TowerA extends GameObject implements Clickable{
+public class TowerB extends GameObject implements Clickable{
 
     Control control;
     State state;
@@ -32,7 +32,7 @@ public class TowerA extends GameObject implements Clickable{
      * @param control
      * @param state
      */
-    public TowerA(Control control, State state)
+    public TowerB(Control control, State state)
     {        
         isVisible = true;
         isExpired = false;
@@ -66,7 +66,7 @@ public class TowerA extends GameObject implements Clickable{
             Point currentLoc = new Point(this.x,this.y);
             this.target = state.findNearestEnemy(currentLoc);
 
-            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 75 && !(this.target == currentTarget))
+            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget))
             {            
                 System.out.println(state.getDistance(currentLoc, target.getLoc()));
                 
@@ -74,7 +74,7 @@ public class TowerA extends GameObject implements Clickable{
                 System.out.println(this.currentTarget);
 
                 this.currentTarget = this.target;
-                AttackA fire = new AttackA(25, control, state, target, currentLoc);
+                AttackB fire = new AttackB(40, control, state, target, currentLoc);
                 state.addGameObject(fire);
             }
         }
@@ -86,13 +86,12 @@ public class TowerA extends GameObject implements Clickable{
      * @param Graphics g
      */
 	public void draw(Graphics g) {
-		
-
-        Color transparentWhite = new Color(60, 255, 255, 90);
+        Color transparentWhite = new Color(255, 60, 255, 90);
         g.setColor(transparentWhite);
 
-        g.fillOval((int)this.x - 55, (int)this.y - 55, 150,150);
-        g.drawImage(control.getImage("towerA.png"), this.x, this.y, null);	
+        g.fillOval((int)this.x - 130, (int)this.y - 130, 300,300);
+
+		g.drawImage(control.getImage("towerB.png"), this.x, this.y, null);	
 	}
 
     /**
@@ -110,3 +109,4 @@ public class TowerA extends GameObject implements Clickable{
     }
 
 }
+

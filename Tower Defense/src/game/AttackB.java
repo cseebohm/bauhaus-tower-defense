@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import path.Path;
 
-public class AttackA extends GameObject{
+public class AttackB extends GameObject{
 
     int x, y;
 
@@ -19,7 +19,7 @@ public class AttackA extends GameObject{
     Enemy target;
 
 
-    public AttackA(double velocity, Control control, State state, Enemy target, Point towerLoc){
+    public AttackB(double velocity, Control control, State state, Enemy target, Point towerLoc){
         isExpired = false;
         isVisible = true;
 
@@ -60,7 +60,9 @@ public class AttackA extends GameObject{
 
 
     public void draw(Graphics g) {
-        g.drawImage(control.getImage("fireA.png"), this.x, this.y, null);	
+
+
+        g.drawImage(control.getImage("fireB.png"), this.x, this.y, null);	
     }
     
 }

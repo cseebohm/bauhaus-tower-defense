@@ -8,10 +8,9 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.Font;
 
-public class TowerAButton extends GameObject implements Clickable{
+public class TowerBButton extends GameObject implements Clickable{
 
     Control control;
     State state;
@@ -23,7 +22,7 @@ public class TowerAButton extends GameObject implements Clickable{
      * @param control
      * @param state
      */
-    public TowerAButton(Control control, State state){
+    public TowerBButton(Control control, State state){
         isVisible = true;
         isExpired = false;
 
@@ -47,18 +46,18 @@ public class TowerAButton extends GameObject implements Clickable{
      */
     public void draw(Graphics g) {
         //location of button
-        int x = 460;
+        int x = 500;
         int y = 120;
         
         //draw button
         g.setColor(Color.white);
         g.fillRoundRect(x, y, 26, 26, 5,5);
 
-        g.drawImage(control.getImage("towerA.png"), x+3, y+3, 20,20, null);
+        g.drawImage(control.getImage("towerB.png"), x+3, y+3, 20,20, null);
 
         g.setColor(Color.black);
 		g.setFont(new Font( "Serif", Font.PLAIN, 9));
-        g.drawString("tower a", x-2, y+35);
+        g.drawString("tower b", x-2, y+35);
     }
     
     /**
@@ -66,16 +65,17 @@ public class TowerAButton extends GameObject implements Clickable{
      */
     public void consumeClick() {
         //if in towerA area and mouseClick == TRUE
-        if(control.getMouseX()>460 && control.getMouseY()>120 && control.getMouseX()<486 && control.getMouseY()<146 && control.getClick())
+        if(control.getMouseX()>500 && control.getMouseY()>120 && control.getMouseX()<526 && control.getMouseY()<146 && control.getClick())
             {
-                //only buy tower if money > $250
-                if(state.getMoney()>=250)
+                //only buy tower if money > $500
+                if(state.getMoney()>=500)
                 {
                     //add tower and charge money
-                    state.addGameObject(new TowerA(control, state));
-                    state.changeMoney(-250);
+                    state.addGameObject(new TowerB(control, state));
+                    state.changeMoney(-500);
                 }
             }
     }
     
 }
+

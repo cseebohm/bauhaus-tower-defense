@@ -76,6 +76,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this, state));  // Add one background object to our list
         state.addGameObject(new TowerAButton(this, state)); // Add towerA button
+        state.addGameObject(new TowerBButton(this, state)); // Add towerA button
         state.addGameObject(new Menu(state));
         state.finishFrame();    // Mark the next frame as ready
         
