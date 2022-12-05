@@ -54,7 +54,7 @@ public class AttackA extends GameObject{
             isExpired = true;
 
             //expire enemy
-            target.setExpired();
+            target.takeDamage(1);
         }
     }
 

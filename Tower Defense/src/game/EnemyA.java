@@ -22,6 +22,9 @@ public class EnemyA extends Enemy {
     
     private State state;
 	private Control control;
+
+    int strength;
+    int damageTaken;
     
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -43,6 +46,9 @@ public class EnemyA extends Enemy {
         this.control = control;
 
         this.velocity = velocity;
+
+        strength = 1;
+        damageTaken = 0;
     }
 
     /**
@@ -77,14 +83,20 @@ public class EnemyA extends Enemy {
 	}
 
     /**
-     * this method sets the target to expired
+     * this method takes damage, when damageTaken > strength of the object, it is expired
      */
-    public void setExpired() {
-		isExpired = true;
-        isVisible = false;
+    
+    public void takeDamage(int damage) {
+		this.damageTaken += damage;
 
-        state.changeMoney(50);
-        state.changeScore(75);
+        if(damageTaken >= strength)
+        {
+            isExpired = true;
+            isVisible = false;
+
+            state.changeMoney(50);
+            state.changeScore(75);
+        }
 	}
 
 }

@@ -24,5 +24,5 @@ public abstract class Enemy extends GameObject{
         return currentLoc;
     }
 
-    abstract public void setExpired();
+    abstract public void takeDamage(int damage);
 }

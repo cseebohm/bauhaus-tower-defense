@@ -23,6 +23,9 @@ public class EnemyB extends Enemy{
     private State state;
 	private Control control;
 
+    int damageTaken;
+    int strength;
+
     /**
      * this constructor makes one EnemyB object, the default percentage is zero
      * the enemy is visible and not expired
@@ -43,6 +46,9 @@ public class EnemyB extends Enemy{
         this.control = control;
 
         this.velocity = velocity;
+
+        this.strength = 3;
+        this.damageTaken = 0;
     }
 
     /**
@@ -77,12 +83,20 @@ public class EnemyB extends Enemy{
 		g.drawImage(control.getImage("enemyB.png"), currentLoc.x - 10, currentLoc.y - 10, null);	
 	}
 
-    public void setExpired() {
-        isExpired = true;
-        isVisible = false;
+    /**
+     * this method takes damage, when damageTaken > strength of the object, it is expired
+     */
+    
+    public void takeDamage(int damage) {
+		this.damageTaken += damage;
 
-        state.changeMoney(100);
-        state.changeScore(150);
-        
-    }
+        if(damageTaken >= strength)
+        {
+            isExpired = true;
+            isVisible = false;
+
+            state.changeMoney(100);
+            state.changeScore(150);
+        }
+	}
 }
