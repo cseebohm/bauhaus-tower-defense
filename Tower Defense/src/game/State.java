@@ -9,6 +9,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Point;
 
 public class State {
 	
@@ -73,8 +74,7 @@ public class State {
 
         this.currentTime = System.currentTimeMillis();
         this.totalTime = this.currentTime - this.startTime;
-        this.elapsedTime = this.currentTime - this.totalTime;
-    
+        this.elapsedTime = this.currentTime - this.totalTime;    
     }
     
     /**
@@ -222,5 +222,50 @@ public class State {
     public double getTotalTime ()
     {
         return this.totalTime;
+    }
+
+    /**
+     * finds the nearest enemy to a point
+     * 
+     * @return Enemy
+     */
+    public Enemy findNearestEnemy (Point p)
+    {
+        Enemy closestEnemy = null;
+        double distanceE;
+        double distanceMin = 600;
+
+        for(GameObject a: currentFrameGameObjects)
+        {    
+            if (a instanceof Enemy)
+            {
+            Enemy e = (Enemy) a;
+            // Do work with the enemy, e, here.
+            
+            distanceE = getDistance(e.getLoc(), p);
+
+                if (distanceE < distanceMin)
+                {
+                    closestEnemy = e;
+                    distanceMin = distanceE;
+                }
+            }
+        }
+
+        return closestEnemy;
+    }
+
+    /**
+     * finds the distance between two points
+     * 
+     * @return double
+     */
+    public double getDistance(Point a, Point b)
+    {
+        double distance;
+            
+        distance = (Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)));
+
+        return distance;
     }
 }

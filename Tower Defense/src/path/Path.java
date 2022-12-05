@@ -104,6 +104,18 @@ public class Path {
 		this.n++;
 
 	}
+
+	/**
+	 * removes point at i
+	 * 
+	 *
+	 * @return int
+	 */
+	public void remove(int i)
+	{
+		this.n = n-1;
+		points.remove(i);
+	}
 	
 	
 	/**

@@ -8,6 +8,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.Point;
 
 public class TowerA extends GameObject implements Clickable{
 
@@ -18,6 +19,9 @@ public class TowerA extends GameObject implements Clickable{
 
     int x;
     int y;
+
+    Enemy target;
+    Enemy currentTarget;
 
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -32,6 +36,9 @@ public class TowerA extends GameObject implements Clickable{
         isVisible = true;
         isExpired = false;
         isMoving = true;
+
+        this.target = null;
+        this.currentTarget = null;
 
         this.control = control;
         this.state = state;
@@ -52,7 +59,24 @@ public class TowerA extends GameObject implements Clickable{
             this.x = control.getMouseX()-20;
             this.y = control.getMouseY()-20;
             consumeClick();
-        }		
+        }	
+
+        else{
+            Point currentLoc = new Point(this.x,this.y);
+            this.target = state.findNearestEnemy(currentLoc);
+
+            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 100 && !(this.target == currentTarget))
+            {            
+                System.out.println(state.getDistance(currentLoc, target.getLoc()));
+                
+                System.out.println(this.target);
+                System.out.println(this.currentTarget);
+
+                this.currentTarget = this.target;
+                AttackA fire = new AttackA(25, control, state, target, currentLoc);
+                state.addGameObject(fire);
+            }
+        }
 	}
 
     /**

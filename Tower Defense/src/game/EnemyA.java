@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 import path.Path;
 
-public class EnemyA extends GameObject {
+public class EnemyA extends Enemy {
 	
 	private double percentage;
     private double velocity;
@@ -54,8 +54,7 @@ public class EnemyA extends GameObject {
 		//move percentage by velocity of pixels per millisecond
             //start with 1 pixels/second
 
-        double velocity = this.velocity; 
-        double movePerFrame = velocity * state.getElapsedTime() * Math.pow(10, -12.0);
+        double movePerFrame = this.velocity * state.getElapsedTime() * Math.pow(10, -12.0);
 		percentage += movePerFrame / control.getPath().getLength();
 		
 		if(percentage >= (1)){
@@ -73,7 +72,19 @@ public class EnemyA extends GameObject {
      * @param Graphics g 
      */
 	public void draw(Graphics g) {
-		Point p = path.convertToCoordinates(percentage);
-		g.drawImage(control.getImage("enemyA.png"), p.x - 10, p.y - 10, null);	
+		currentLoc = path.convertToCoordinates(percentage);
+		g.drawImage(control.getImage("enemyA.png"), currentLoc.x - 10, currentLoc.y - 10, null);	
 	}
+
+    /**
+     * this method sets the target to expired
+     */
+    public void setExpired() {
+		isExpired = true;
+        isVisible = false;
+
+        state.changeMoney(50);
+        state.changeScore(75);
+	}
+
 }

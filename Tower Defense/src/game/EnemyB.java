@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 import path.Path;
 
-public class EnemyB extends GameObject {
+public class EnemyB extends Enemy{
 	
 	private double percentage;
     private double velocity;
@@ -22,7 +22,7 @@ public class EnemyB extends GameObject {
     
     private State state;
 	private Control control;
-    
+
     /**
      * this constructor makes one EnemyB object, the default percentage is zero
      * the enemy is visible and not expired
@@ -73,7 +73,16 @@ public class EnemyB extends GameObject {
      * @param Graphics g 
      */
 	public void draw(Graphics g) {
-		Point p = path.convertToCoordinates(percentage);
-		g.drawImage(control.getImage("enemyB.png"), p.x - 10, p.y - 10, null);	
+		currentLoc = path.convertToCoordinates(percentage);
+		g.drawImage(control.getImage("enemyB.png"), currentLoc.x - 10, currentLoc.y - 10, null);	
 	}
+
+    public void setExpired() {
+        isExpired = true;
+        isVisible = false;
+
+        state.changeMoney(100);
+        state.changeScore(150);
+        
+    }
 }

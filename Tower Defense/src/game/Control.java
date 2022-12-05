@@ -259,10 +259,11 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 
         }
 
+                    
+        
         //makes 2 enemyBs at every .5 seconds that move at a rate of 1.25 pixel per second
         if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 8) && (state.getEnemyCount() >= 5)) 
         {
-            System.out.println("Enemy B");
             state.addGameObject(new EnemyB(1.25, path, this, state));
             state.changeEnemyCount(1);
                 
