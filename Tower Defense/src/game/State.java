@@ -70,6 +70,13 @@ public class State {
      */
     public void reset(){
         currentFrameGameObjects = new ArrayList<GameObject>();
+        startFrame();  // Prepares the creation of the 'next' frame
+        addGameObject(new Background(control, this));  // Add one background object to our list
+        addGameObject(new TowerAButton(control, this)); // Add towerA button
+        addGameObject(new TowerBButton(control, this)); // Add towerA button
+        addGameObject(new StartWaveButton(control, this));
+        addGameObject(new Menu(this));
+        finishFrame(); 
 
         //initialize lives to 3 and money to 500
         lives = 3;
@@ -82,7 +89,13 @@ public class State {
         isGameOver = false;
 
         startTime = System.currentTimeMillis();
+        currentTime = startTime;
+        
+        elapsedTime = 0;
+
         currentLevel = 0;
+
+        control.enemySpawnTime = 0;
 
     }
 

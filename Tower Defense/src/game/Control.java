@@ -95,6 +95,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
      * Method is called 16x/s after timer is started
      */
     public void actionPerformed(ActionEvent e) {
+        System.out.println(state.getTotalTime());
 
         state.startFrame();
         
@@ -253,6 +254,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
      * start the timer
      */
     public void startTimer(){
+        t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
     }
 
@@ -261,6 +263,13 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
      */
     public void stopTimer(){
         t.stop();
+    }
+
+    /**
+     * initialize level
+     */
+    public void newLevel(){
+        level = new Level(this, state);
     }
     
 	

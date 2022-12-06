@@ -74,6 +74,7 @@ public class PlayAgainButton extends GameObject implements Clickable{
                 state.removeGameObject(gameOver);
 
                 control.startTimer();
+                control.newLevel();
             }
     }
     
