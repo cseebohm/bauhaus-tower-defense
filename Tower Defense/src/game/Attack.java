@@ -1,3 +1,9 @@
+/**
+ * this class defines the attack superclass 
+ * 
+ * @author  Clarissa Seebohm
+ * @version November 18, 2022
+ */
 package game;
 
 import java.awt.Graphics;
@@ -15,16 +21,10 @@ public class Attack extends GameObject{
     protected Enemy target;
 
     @Override
-    public void update(double timeElapsed) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void update(double timeElapsed) { }
 
     @Override
-    public void draw(Graphics g) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void draw(Graphics g) { }
     
 
 

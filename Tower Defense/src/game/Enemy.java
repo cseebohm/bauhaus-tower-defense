@@ -1,3 +1,10 @@
+/**
+ * this class defines the enemy superclass 
+ * 
+ * @author  Clarissa Seebohm
+ * @version November 18, 2022
+ */
+
 package game;
 
 import java.awt.Graphics;
@@ -6,7 +13,7 @@ import path.Path;
 
 public abstract class Enemy extends GameObject{
 
-    Point currentLoc;
+    protected Point currentLoc;
 
     protected double percentage;
     protected double velocity;
@@ -39,14 +46,15 @@ public abstract class Enemy extends GameObject{
 	}
 
     @Override
-    public void draw(Graphics g) {
-        // TODO Auto-generated method stub
-        
+    public void draw(Graphics g) {   
     }
 
     public Point getLoc() {
         return currentLoc;
     }
 
+    /*
+     * this method inflicts the damage when hit
+     */
     abstract public void takeDamage(int damage);
 }

@@ -8,8 +8,6 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
 
 import path.Path;
 
@@ -53,7 +51,7 @@ public class EnemyA extends Enemy {
     /**
      * this method takes damage, when damageTaken > strength of the object, it is expired
      */
-    
+
     public void takeDamage(int damage) {
 		this.damageTaken += damage;
 

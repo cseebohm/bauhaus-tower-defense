@@ -1,5 +1,5 @@
 /**
- * TowerAButton class draws and defines the button to buy tower type A
+ * StartWaveButton class draws and defines the button to run the level
  * 
  * @author  Clarissa Seebohm
  * @version November 14, 2022
@@ -12,9 +12,8 @@ import java.awt.Font;
 
 public class StartWaveButton extends GameObject implements Clickable{
     /**
-     * constructor for the tower A button 
+     * constructor for the start wave button 
      * 
-     * @param towerA
      * @param control
      * @param state
      */
@@ -27,7 +26,7 @@ public class StartWaveButton extends GameObject implements Clickable{
     }
 
     /**
-     * update method for the towerA button, executes consumeClick after time elapsed
+     * update method for the start wave button, executes consumeClick after time elapsed
      * 
      * @param timeElapsed
      */
@@ -36,7 +35,7 @@ public class StartWaveButton extends GameObject implements Clickable{
     }
 
     /**
-     * draw method for the towerA button
+     * draw method for the start wave button
      * 
      * @param timeElapsed
      */
@@ -60,10 +59,10 @@ public class StartWaveButton extends GameObject implements Clickable{
     }
     
     /**
-     * consume click method for tower A button, if the towerA button is clicked, add a towerA object and change money by -$250
+     * consume click method for start wave button
      */
     public void consumeClick() {
-        //if in towerA area and mouseClick == TRUE
+        //if in area and mouseClick == TRUE
         if(control.getMouseX()>560 && control.getMouseY()>120 && control.getMouseX()<586 && control.getMouseY()<146 && control.getClick())
             {
                 //set level to next level

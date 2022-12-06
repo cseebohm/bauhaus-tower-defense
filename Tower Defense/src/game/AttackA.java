@@ -1,3 +1,9 @@
+/**
+ * this class defines attackA
+ * 
+ * @author  Clarissa Seebohm
+ * @version November 18, 2022
+ */
 package game;
 
 import java.awt.Graphics;
@@ -28,12 +34,15 @@ public class AttackA extends Attack{
     }
 
     public void update(double timeElapsed) {
+        //update path as object moves
         this.effectPath.remove(1);
         this.effectPath.add(target.getLoc().x, target.getLoc().y);
 
+        //calculate move per frame and update percentage
         double movePerFrame = this.velocity * state.getElapsedTime() * Math.pow(10, -12.0);
         percentage += movePerFrame / control.getPath().getLength();
 
+        //convert to coordinates
         Point currentLoc = effectPath.convertToCoordinates(percentage);
         this.x = currentLoc.x;
         this.y = currentLoc.y;
