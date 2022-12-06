@@ -28,6 +28,15 @@ public class GameOver extends GameObject{
 
 		this.state = state;
 		this.control = control;
+
+		state.setHighScore();
+		state.addGameObject(new PlayAgainButton(control, state, this));
+
+		for(GameObject go: state.nextFrameGameObjects)
+                    if(go instanceof Enemy)
+                        go.setExpired();
+                    else if(go instanceof Tower)
+                        go.setExpired();
 	}
 
 	@Override
@@ -49,10 +58,25 @@ public class GameOver extends GameObject{
 		
 		g.setColor(Color.white);
 		
-
 		//draw score
 		g.setFont(new Font( "Serif", Font.BOLD, 11));
 		g.drawString(("SCORE: " + state.getScore()), 475,65);
+
+		//draw score
+		g.setFont(new Font( "Serif", Font.BOLD, 11));
+		g.drawString(("HIGH SCORE: " + state.getHighScore()), 475,50);
+
+		//location of button
+		int x = 475;
+		int y = 80;
+				
+		//draw play again button button
+		g.setColor(Color.white);
+		g.fillRoundRect(x, y, 26*3, 26, 5,5);
+		
+		g.setColor(Color.black);
+		g.setFont(new Font( "CooperBlackStd-Italic", Font.PLAIN, 11));
+		g.drawString("play again?", x+5, y+15);
 	}
 
 }

@@ -36,6 +36,16 @@ public abstract class GameObject {
 	{
 		return isExpired;
 	}
+
+	/**
+	 * setExpired mutator method
+	 * 
+	 * @return boolean isExpired
+	 */
+	public void setExpired()
+	{
+		this.isExpired = true;
+	}
 	
 	/**
 	 * require update method with input of time elased

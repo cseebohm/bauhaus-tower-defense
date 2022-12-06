@@ -248,6 +248,21 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 	public Object put(Object key, Object value) {
 		return null;
 	}
+
+    /**
+     * start the timer
+     */
+    public void startTimer(){
+        t.start();
+    }
+
+    /**
+     * stop the timer
+     */
+    public void stopTimer(){
+        t.stop();
+    }
+    
 	
     //unnecessary methods from mouseListener and mouseMotionListener
     public void mouseDragged(MouseEvent e) {}

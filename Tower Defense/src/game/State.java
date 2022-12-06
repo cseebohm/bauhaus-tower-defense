@@ -14,8 +14,8 @@ import java.awt.Color;
 
 public class State {
 	
-	protected List<GameObject> currentFrameGameObjects;
-    protected List<GameObject> nextFrameGameObjects;
+	List<GameObject> currentFrameGameObjects;
+    List<GameObject> nextFrameGameObjects;
 
     protected int lives;
     protected int money;
@@ -34,6 +34,8 @@ public class State {
     protected Control control;
 
     protected int currentLevel;
+
+    protected int highScore;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -58,6 +60,47 @@ public class State {
         this.control = control;
 
         currentLevel = 0;
+
+        highScore = 0;
+    }
+
+    /**
+     * reset the state
+     * 
+     */
+    public void reset(){
+        currentFrameGameObjects = new ArrayList<GameObject>();
+
+        //initialize lives to 3 and money to 500
+        lives = 3;
+        money = 500;
+        score = 0;
+
+        enemyCount = 0;
+        totalTime = 0;
+        
+        isGameOver = false;
+
+        startTime = System.currentTimeMillis();
+        currentLevel = 0;
+
+    }
+
+    /**
+     * set high score
+     * 
+     */
+    public void setHighScore(){
+        if(this.score > this.highScore)
+            this.highScore = this.score;
+    }
+
+    /**
+     * get high score
+     * 
+     */
+    public int getHighScore(){
+        return this.highScore;
     }
     
 

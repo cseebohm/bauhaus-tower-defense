@@ -54,7 +54,7 @@ public class TowerA extends Tower {
             if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 75 && !(this.target == currentTarget) && (state.getTotalTime() - timeFired) > 1 * Math.pow(10,3))
             {            
                 this.currentTarget = this.target;
-                AttackA fire = new AttackA(40, control, state, target, currentLoc);
+                AttackA fire = new AttackA(60, control, state, target, currentLoc);
                 state.addGameObject(fire);
                 timeFired = state.getTotalTime();
             }

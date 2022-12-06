@@ -33,7 +33,7 @@ public class EnemyB extends Enemy{
 
         this.velocity = velocity;
 
-        this.strength = 3;
+        this.strength = 4;
         this.damageTaken = 0;
     }
 
