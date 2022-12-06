@@ -105,7 +105,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         state.startFrame();
         
         //check lives
-        if(state.getLives() <= 0)
+        if(state.getLives() <= 0 || state.isGameOver())
         {
             state.setGameOver(true);
             state.addGameObject(new GameOver(this, state));
@@ -257,7 +257,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
     public double levelOne(double enemySpawnTime) {
             
         //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && state.getEnemyCount() < 5)
+        if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && state.getEnemyCount() < 6)
         {
     
         state.addGameObject(new EnemyA((1), path, this, state));
@@ -266,18 +266,35 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         enemySpawnTime = state.getTotalTime();
 
         }
-
-                    
-        
+    
         //makes 2 enemyBs at every .5 seconds that move at a rate of 1.25 pixel per second
-        if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 8) && (state.getEnemyCount() >= 5)) 
+        else if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 9) && (state.getEnemyCount() >= 6)) 
         {
-            state.addGameObject(new EnemyB(1.25, path, this, state));
+            state.addGameObject(new EnemyB(1, path, this, state));
             state.changeEnemyCount(1);
                 
             enemySpawnTime = state.getTotalTime();
         }
 
+        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
+        else if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && (state.getEnemyCount() < 12) && (state.getEnemyCount() >= 9))
+        {
+            
+        state.addGameObject(new EnemyA((1), path, this, state));
+        state.changeEnemyCount(1);
+                        
+        enemySpawnTime = state.getTotalTime();
+        
+        }
+
+        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
+        else if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && (state.getEnemyCount() < 15) && (state.getEnemyCount() >= 12))
+        {
+        state.addGameObject(new EnemyA((1), path, this, state));
+        state.changeEnemyCount(1);
+                
+        enemySpawnTime = state.getTotalTime();
+        }
         return enemySpawnTime;
 
     }
@@ -300,6 +317,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
     @Override public Collection values() {return null;}
     @Override public Set entrySet() {return null;}
 	@Override public int size() {return 0;}
-*/
+    */
 
 }

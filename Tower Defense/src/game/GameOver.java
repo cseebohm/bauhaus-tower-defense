@@ -1,5 +1,5 @@
 /**
- * this class defines the background 
+ * this class defines the game over background 
  * 
  * @author  Clarissa Seebohm
  * @version November 14, 2022
@@ -8,7 +8,8 @@
 package game;
 
 import java.awt.Graphics;
-
+import java.awt.Color;
+import java.awt.Font;
 
 public class GameOver extends GameObject{
 	
@@ -42,6 +43,12 @@ public class GameOver extends GameObject{
 	 */
 	public void draw(Graphics g) {
 		g.drawImage(control.getImage("gameover.png"), 0, 0, null);
+		
+		g.setColor(Color.white);
+
+		//draw game state
+		g.setFont(new Font( "Serif", Font.BOLD, 11));
+		g.drawString(("SCORE: " + state.getScore()), 475,50);
 	}
 
 }

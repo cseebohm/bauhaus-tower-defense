@@ -210,6 +210,16 @@ public class State {
     }
 
     /**
+     * an accessor method for isGameOver
+     * 
+     * @param boolean
+     */
+    public boolean isGameOver ()
+    {
+        return this.isGameOver;
+    }
+
+    /**
      * an accessor method for elapsedTime
      * 
      * @return elapsedTime
