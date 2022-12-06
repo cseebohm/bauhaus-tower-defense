@@ -95,8 +95,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
      * Method is called 16x/s after timer is started
      */
     public void actionPerformed(ActionEvent e) {
-        System.out.println(state.getTotalTime());
-
         state.startFrame();
         
         //check lives
