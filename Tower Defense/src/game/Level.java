@@ -48,7 +48,7 @@ public class Level {
     public double runLevelTwo(double enemySpawnTime) {
             
         //makes 5 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && state.getEnemyCount() < 5)
+        if(((state.getTotalTime() - enemySpawnTime) > .5 * Math.pow(10,3)) && state.getEnemyCount() < 5)
         {
     
         state.addGameObject(new EnemyB((1.25), path, control, state));
@@ -59,7 +59,7 @@ public class Level {
         }
     
         //makes 5 enemyBs at every .75 seconds that move at a rate of 1.25 pixel per second
-        else if((state.getTotalTime() - enemySpawnTime) > (.75 * Math.pow(10,3)) && (state.getEnemyCount() < 10) && (state.getEnemyCount() >= 5)) 
+        else if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 10) && (state.getEnemyCount() >= 5)) 
         {
             state.addGameObject(new EnemyB(1.25, path, control, state));
             state.changeEnemyCount(1);
@@ -68,7 +68,7 @@ public class Level {
         }
 
         //makes 5 enemyAs at every .75 seconds that move at a rate of 1.25 pixel per second
-        else if((state.getTotalTime() - enemySpawnTime) > (.75 * Math.pow(10,3)) && (state.getEnemyCount() < 15) && (state.getEnemyCount() >= 10))
+        else if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 15) && (state.getEnemyCount() >= 10))
         { 
             state.addGameObject(new EnemyA((1.25), path, control, state));
             state.changeEnemyCount(1);
@@ -89,7 +89,7 @@ public class Level {
     public double runLevelThree(double enemySpawnTime) {
             
         //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        if(((state.getTotalTime() - enemySpawnTime) > .5 * Math.pow(10,3)) && state.getEnemyCount() < 10)
+        if(((state.getTotalTime() - enemySpawnTime) > .25 * Math.pow(10,3)) && state.getEnemyCount() < 10)
         {
     
         state.addGameObject(new EnemyB((1.25), path, control, state));

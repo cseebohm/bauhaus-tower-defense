@@ -42,7 +42,10 @@ public class GameOver extends GameObject{
 	 * @param Graphics g
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(control.getImage("gameover.png"), 0, 0, null);
+		if(state.getLives() < 1)
+			g.drawImage(control.getImage("gameover.png"), 0, 0, null);
+		else
+			g.drawImage(control.getImage("youwin.png"), 0, 0, null);
 		
 		g.setColor(Color.white);
 

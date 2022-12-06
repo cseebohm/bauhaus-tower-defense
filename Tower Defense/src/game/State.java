@@ -14,23 +14,22 @@ import java.awt.Color;
 
 public class State {
 	
-	List<GameObject> currentFrameGameObjects;
-    List<GameObject> nextFrameGameObjects;
+	protected List<GameObject> currentFrameGameObjects;
+    protected List<GameObject> nextFrameGameObjects;
 
-    int lives;
-    int money;
-    int score;
+    protected int lives;
+    protected int money;
+    protected int score;
 
-    int enemyCount;
+    protected int enemyCount;
 
-    boolean isGameOver;
-    boolean youWin;
+    protected boolean isGameOver;
 
-    double elapsedTime;
-    double totalTime;
+    protected double elapsedTime;
+    protected double totalTime;
 
-    private double startTime;
-    private double currentTime;
+    protected double startTime;
+    protected double currentTime;
 
     Control control;
 
@@ -354,9 +353,8 @@ public class State {
         setEnemyCount(0);
 
         if(currentLevel > 3){
-            youWin = true;
             changeScore(getMoney());
-            addGameObject(new YouWin(control, this));
+            addGameObject(new GameOver(control, this));
         }
     }
 }

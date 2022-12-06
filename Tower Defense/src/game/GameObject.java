@@ -12,6 +12,10 @@ public abstract class GameObject {
 
 	protected boolean isVisible;
 	protected boolean isExpired;
+
+	protected State state;
+	protected Control control;
+	
 	
 	/**
 	 * isVisible accessor method

@@ -11,10 +11,6 @@ import java.awt.Graphics;
 import java.awt.Font;
 
 public class StartWaveButton extends GameObject implements Clickable{
-
-    Control control;
-    State state;
-
     /**
      * constructor for the tower A button 
      * 

@@ -11,18 +11,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.Point;
 
-public class TowerA extends GameObject implements Clickable{
-
-    Control control;
-    State state;
-    
-    boolean isMoving;
-
-    int x;
-    int y;
-
-    Enemy target;
-    Enemy currentTarget;
+public class TowerA extends Tower {
 
     /**
      * this constructor makes one EnemyA object, the default percentage is zero
@@ -55,14 +44,9 @@ public class TowerA extends GameObject implements Clickable{
      * @param timeElapsed
      */
 	public void update(double timeElapsed) {
-        if(isMoving){
+        placeTower();
 
-            this.x = control.getMouseX()-20;
-            this.y = control.getMouseY()-20;
-            consumeClick();
-        }	
-
-        else{
+        if(!isMoving){
             Point currentLoc = new Point(this.x,this.y);
             this.target = state.findNearestEnemy(currentLoc);
 
@@ -81,30 +65,11 @@ public class TowerA extends GameObject implements Clickable{
      * @param Graphics g
      */
 	public void draw(Graphics g) {
-		
-
+        
         Color transparentWhite = new Color(60, 255, 255, 90);
         g.setColor(transparentWhite);
 
         g.fillOval((int)this.x - 55, (int)this.y - 55, 150,150);
         g.drawImage(control.getImage("towerA.png"), this.x, this.y, null);	
 	}
-
-    /**
-     * this method is executed when isMoving is true in the update method
-     * all it does is change isMoving to false after a click
-     * 
-     */
-    public void consumeClick() {
-        if(control.getClick())
-            isMoving=false;
-
-        //out of bounds, remove game object
-        if(this.x<0 || this.x>600 || this.y<0 || this.y>600)
-            isMoving=true;
-        
-        else if(state.getPixelColor(this.x, this.y).equals(state.getPathColor()))
-            isMoving = true;
-    }
-
 }

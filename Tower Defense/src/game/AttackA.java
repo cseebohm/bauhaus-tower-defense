@@ -4,20 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import path.Path;
 
-public class AttackA extends GameObject{
-
-    int x, y;
-
-    Control control;
-    State state;
-
-    Path effectPath = new Path();
-
-    double percentage;
-    double velocity;
-
-    Enemy target;
-
+public class AttackA extends Attack{
 
     public AttackA(double velocity, Control control, State state, Enemy target, Point towerLoc){
         isExpired = false;
@@ -29,6 +16,8 @@ public class AttackA extends GameObject{
         this.control = control;
         this.state = state;
 
+        this.effectPath = new Path();
+        
         this.x = towerLoc.x+13;
         this.y = towerLoc.y-13;
 
