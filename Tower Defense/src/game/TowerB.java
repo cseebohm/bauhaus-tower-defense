@@ -35,6 +35,8 @@ public class TowerB extends Tower{
 
         this.x = control.getMouseX()-20;
         this.y = control.getMouseY()-20;
+
+        this.timeFired = state.getTotalTime();
     }
     
     /**
@@ -50,7 +52,7 @@ public class TowerB extends Tower{
         if(!isMoving){
             this.target = state.findNearestEnemy(currentLoc);
 
-            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget))
+            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget) && (state.getTotalTime() - timeFired) > .5 * Math.pow(10,3))
             {            
                 this.currentTarget = this.target;
                 AttackB fire = new AttackB(40, control, state, target, currentLoc);

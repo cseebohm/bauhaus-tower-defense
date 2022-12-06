@@ -50,8 +50,8 @@ public class Menu extends GameObject{
         g.drawString(("MONEY: $" + state.getMoney()), 469,95);
 
         //message for game functionality
-        g.setFont(new Font( "CooperBlackStd", Font.PLAIN, 12));
-        g.drawString("click level when ready!", 420, 200);
+        g.setFont(new Font( "CooperBlackStd-Italic", Font.PLAIN, 10));
+        g.drawString("CLICK LEVEL WHEN READY!", 420, 200);
     }
 
     //unused methods

@@ -62,7 +62,7 @@ public class EnemyB extends Enemy{
             isExpired = true;
             isVisible = false;
 
-            state.changeMoney(100);
+            state.changeMoney(125);
             state.changeScore(150);
         }
 	}

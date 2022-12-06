@@ -15,6 +15,8 @@ public class Tower extends GameObject implements Clickable{
 
     protected Point currentLoc;
 
+    protected double timeFired;
+
     @Override
     public void update(double timeElapsed) {  
     }
