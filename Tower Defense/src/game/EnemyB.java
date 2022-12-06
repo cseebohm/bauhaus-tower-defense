@@ -8,9 +8,6 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-
 import path.Path;
 
 public class EnemyB extends Enemy{

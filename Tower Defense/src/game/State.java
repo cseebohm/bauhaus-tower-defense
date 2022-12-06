@@ -31,9 +31,9 @@ public class State {
     protected double startTime;
     protected double currentTime;
 
-    Control control;
+    protected Control control;
 
-    int currentLevel;
+    protected int currentLevel;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -60,6 +60,7 @@ public class State {
         currentLevel = 0;
     }
     
+
     /**
      * this accessor returns the list of game objects for the current frame
      * 
@@ -341,7 +342,14 @@ public class State {
     /**
      * a mutator method for currentLevel
      * 
-     * @return level
+     */
+    public void setCurrentLevel (int i) {
+        this.currentLevel = i;
+    }
+
+    /**
+     * a mutator method for currentLevel
+     * 
      */
     public void nextLevel () {
         this.currentLevel = this.currentLevel + 1;

@@ -53,6 +53,8 @@ public class View extends JPanel{
     {	
     	for (GameObject go : state.getFrameObjects())
             if (go.isVisible() && !go.isExpired())
+			{
                 go.draw(g);
+			}
     }
 }

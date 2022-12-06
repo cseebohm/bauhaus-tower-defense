@@ -27,8 +27,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
-import java.awt.Color;
-
 public class Control extends JPanel implements Runnable, ActionListener, MouseListener, MouseMotionListener {
 
 	View view;
@@ -44,6 +42,8 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 
     Level level;
     double enemySpawnTime;
+
+    Timer t;
 
 	public Control() 
 	{
@@ -84,17 +84,11 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         state.finishFrame();    // Mark the next frame as ready
         
         //start the timer
-        Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
+        t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
 
         //initial level
         level = new Level(this, state);
-
-        //get pixel color test
-
-        Color test = state.getPixelColor(0, 0);
-        System.out.print(test);
-        
 	}
 	
     /**
@@ -109,7 +103,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         {
             state.setGameOver(true);
             state.addGameObject(new GameOver(this, state));
-            
         }
 
         //run each level

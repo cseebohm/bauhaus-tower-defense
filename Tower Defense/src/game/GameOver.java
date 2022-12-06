@@ -48,10 +48,11 @@ public class GameOver extends GameObject{
 			g.drawImage(control.getImage("youwin.png"), 0, 0, null);
 		
 		g.setColor(Color.white);
+		
 
-		//draw game state
+		//draw score
 		g.setFont(new Font( "Serif", Font.BOLD, 11));
-		g.drawString(("SCORE: " + state.getScore()), 475,50);
+		g.drawString(("SCORE: " + state.getScore()), 475,65);
 	}
 
 }
