@@ -29,8 +29,8 @@ public class AttackA extends GameObject{
         this.control = control;
         this.state = state;
 
-        this.x = towerLoc.x + 20;
-        this.y = towerLoc.y - 20;
+        this.x = towerLoc.x+13;
+        this.y = towerLoc.y-13;
 
         this.effectPath.add(x, y);
         this.effectPath.add(target.getLoc().x, target.getLoc().y);

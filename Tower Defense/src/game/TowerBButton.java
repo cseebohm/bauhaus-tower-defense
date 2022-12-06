@@ -68,11 +68,11 @@ public class TowerBButton extends GameObject implements Clickable{
         if(control.getMouseX()>510 && control.getMouseY()>120 && control.getMouseX()<536 && control.getMouseY()<146 && control.getClick())
             {
                 //only buy tower if money > $500
-                if(state.getMoney()>=500)
+                if(state.getMoney()>=750)
                 {
                     //add tower and charge money
                     state.addGameObject(new TowerB(control, state));
-                    state.changeMoney(-500);
+                    state.changeMoney(-750);
                 }
             }
     }
