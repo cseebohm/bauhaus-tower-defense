@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 public class Tower extends GameObject implements Clickable{
 
@@ -11,6 +12,8 @@ public class Tower extends GameObject implements Clickable{
 
     protected Enemy target;
     protected Enemy currentTarget;
+
+    protected Point currentLoc;
 
     @Override
     public void update(double timeElapsed) {  
@@ -35,7 +38,12 @@ public class Tower extends GameObject implements Clickable{
      */
     public void consumeClick() {
         if(control.getClick())
+        {
             isMoving=false;
+
+            //define placed location
+            currentLoc = new Point(this.x,this.y);
+        }
 
         //out of bounds, dont place tower
         if(this.x<0 || this.x>600 || this.y<0 || this.y>600)

@@ -53,7 +53,7 @@ public class TowerBButton extends GameObject implements Clickable{
 
         g.setColor(Color.black);
 		g.setFont(new Font( "Serif", Font.PLAIN, 9));
-        g.drawString("tower b", x, y+35);
+        g.drawString("$750", x, y+35);
     }
     
     /**

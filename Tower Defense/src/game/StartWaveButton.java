@@ -49,14 +49,14 @@ public class StartWaveButton extends GameObject implements Clickable{
         g.setColor(Color.white);
         g.fillRoundRect(x, y, 26, 26, 5,5);
 
-        //g.setColor(Color.BLACK);
-        //g.setFont(new Font( "Serif", Font.PLAIN, 12));
-        //String level = String.valueOf(state.getCurrentLevel() + 1);
-        //g.drawString(level, x+9, y+16);
+        g.setColor(state.getPixelColor(300, 400));
+        g.setFont(new Font( "CooperBlackStd", Font.PLAIN, 16));
+        String level = String.valueOf(state.getCurrentLevel());
+        g.drawString(level, x+7, y+17);
 
         g.setColor(Color.black);
 		g.setFont(new Font( "Serif", Font.PLAIN, 9));
-        g.drawString("ready", x, y+35);
+        g.drawString("level", x, y+35);
     }
     
     /**

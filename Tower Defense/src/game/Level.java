@@ -89,7 +89,7 @@ public class Level {
     public double runLevelThree(double enemySpawnTime) {
             
         //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        if(((state.getTotalTime() - enemySpawnTime) > .25 * Math.pow(10,3)) && state.getEnemyCount() < 10)
+        if(((state.getTotalTime() - enemySpawnTime) > .5 * Math.pow(10,3)) && state.getEnemyCount() < 10)
         {
     
         state.addGameObject(new EnemyB((1.25), path, control, state));

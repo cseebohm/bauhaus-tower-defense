@@ -47,7 +47,6 @@ public class TowerA extends Tower {
         placeTower();
 
         if(!isMoving){
-            Point currentLoc = new Point(this.x,this.y);
             this.target = state.findNearestEnemy(currentLoc);
 
             if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 75 && !(this.target == currentTarget))
@@ -65,7 +64,7 @@ public class TowerA extends Tower {
      * @param Graphics g
      */
 	public void draw(Graphics g) {
-        
+
         Color transparentWhite = new Color(60, 255, 255, 90);
         g.setColor(transparentWhite);
 

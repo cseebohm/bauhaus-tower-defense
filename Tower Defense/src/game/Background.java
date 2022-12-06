@@ -12,9 +12,6 @@ import java.awt.Graphics;
 
 public class Background extends GameObject{
 	
-	private State state;
-	private Control control;
-	
 	/**
 	 * this constructor makes a background object
 	 * 

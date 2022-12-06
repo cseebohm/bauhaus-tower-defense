@@ -324,12 +324,7 @@ public class State {
      */
     public Color getPathColor(){
 
-		java.awt.image.BufferedImage background = control.getImage("bauhausBackground.png");
-
-        int pixel = background.getRGB(300,0);
-
-        //Creating a Color object from pixel value
-        Color black = new Color(pixel, true);
+		Color black = getPixelColor(0, 300);
 
         return black;
     }

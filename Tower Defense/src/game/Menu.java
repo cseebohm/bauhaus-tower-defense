@@ -48,6 +48,10 @@ public class Menu extends GameObject{
         g.drawString(("SCORE: " + state.getScore()), 483,65);
         g.drawString(("LIVES: " + state.getLives()), 476,80);
         g.drawString(("MONEY: $" + state.getMoney()), 469,95);
+
+        //message for game functionality
+        g.setFont(new Font( "CooperBlackStd", Font.PLAIN, 12));
+        g.drawString("click level when ready!", 420, 200);
     }
 
     //unused methods

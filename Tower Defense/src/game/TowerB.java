@@ -46,8 +46,8 @@ public class TowerB extends Tower{
 	public void update(double timeElapsed) {
         placeTower();	
 
+        //when tower is active
         if(!isMoving){
-            Point currentLoc = new Point(this.x,this.y);
             this.target = state.findNearestEnemy(currentLoc);
 
             if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget))
