@@ -42,7 +42,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 
     private Map <String, BufferedImage> imageCache;
 
-    boolean levelOne;
+    Level level;
     double enemySpawnTime;
 
 	public Control() 
@@ -79,6 +79,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         state.addGameObject(new Background(this, state));  // Add one background object to our list
         state.addGameObject(new TowerAButton(this, state)); // Add towerA button
         state.addGameObject(new TowerBButton(this, state)); // Add towerA button
+        state.addGameObject(new StartWaveButton(this, state));
         state.addGameObject(new Menu(state));
         state.finishFrame();    // Mark the next frame as ready
         
@@ -87,8 +88,7 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         t.start();
 
         //initial level
-        levelOne = true;
-        enemySpawnTime = 0;
+        level = new Level(this, state);
 
         //get pixel color test
 
@@ -105,14 +105,22 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
         state.startFrame();
         
         //check lives
-        if(state.getLives() <= 0 || state.isGameOver())
+        if(state.getLives() <= 0)
         {
             state.setGameOver(true);
             state.addGameObject(new GameOver(this, state));
             
         }
 
-        enemySpawnTime = levelOne(enemySpawnTime);
+        //run each level
+        if(state.getCurrentLevel() == 1)
+            enemySpawnTime = level.runLevelOne(enemySpawnTime);
+
+        else if(state.getCurrentLevel() == 2)
+            enemySpawnTime = level.runLevelTwo(enemySpawnTime);
+
+        else if(state.getCurrentLevel() == 3)
+            enemySpawnTime = level.runLevelThree(enemySpawnTime);
 
         for (GameObject go : state.getFrameObjects())
             go.update(0);    
@@ -247,57 +255,6 @@ public class Control extends JPanel implements Runnable, ActionListener, MouseLi
 	public Object put(Object key, Object value) {
 		return null;
 	}
-
-    /**
-     * runs level one, for level one 5 enemyA objects spawn every .75s, then 3 enemyB objects spawn every .5s
-     * 
-     * @param enemySpawnTime
-     * @return enemySpawnTime
-     */
-    public double levelOne(double enemySpawnTime) {
-            
-        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && state.getEnemyCount() < 6)
-        {
-    
-        state.addGameObject(new EnemyA((1), path, this, state));
-        state.changeEnemyCount(1);
-                
-        enemySpawnTime = state.getTotalTime();
-
-        }
-    
-        //makes 2 enemyBs at every .5 seconds that move at a rate of 1.25 pixel per second
-        else if((state.getTotalTime() - enemySpawnTime) > (.5 * Math.pow(10,3)) && (state.getEnemyCount() < 9) && (state.getEnemyCount() >= 6)) 
-        {
-            state.addGameObject(new EnemyB(1, path, this, state));
-            state.changeEnemyCount(1);
-                
-            enemySpawnTime = state.getTotalTime();
-        }
-
-        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        else if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && (state.getEnemyCount() < 12) && (state.getEnemyCount() >= 9))
-        {
-            
-        state.addGameObject(new EnemyA((1), path, this, state));
-        state.changeEnemyCount(1);
-                        
-        enemySpawnTime = state.getTotalTime();
-        
-        }
-
-        //makes 4 enemyAs at every .75 seconds that move at a rate of 1 pixel per second
-        else if(((state.getTotalTime() - enemySpawnTime) > .75 * Math.pow(10,3)) && (state.getEnemyCount() < 15) && (state.getEnemyCount() >= 12))
-        {
-        state.addGameObject(new EnemyA((1), path, this, state));
-        state.changeEnemyCount(1);
-                
-        enemySpawnTime = state.getTotalTime();
-        }
-        return enemySpawnTime;
-
-    }
 	
     //unnecessary methods from mouseListener and mouseMotionListener
     public void mouseDragged(MouseEvent e) {}

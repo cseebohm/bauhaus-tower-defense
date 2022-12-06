@@ -68,11 +68,6 @@ public class TowerA extends GameObject implements Clickable{
 
             if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 75 && !(this.target == currentTarget))
             {            
-                System.out.println(state.getDistance(currentLoc, target.getLoc()));
-                
-                System.out.println(this.target);
-                System.out.println(this.currentTarget);
-
                 this.currentTarget = this.target;
                 AttackA fire = new AttackA(25, control, state, target, currentLoc);
                 state.addGameObject(fire);

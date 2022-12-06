@@ -24,6 +24,7 @@ public class State {
     int enemyCount;
 
     boolean isGameOver;
+    boolean youWin;
 
     double elapsedTime;
     double totalTime;
@@ -32,6 +33,8 @@ public class State {
     private double currentTime;
 
     Control control;
+
+    int currentLevel;
 	
     /**
      * this constructor creates an empty list for the current frame
@@ -54,6 +57,8 @@ public class State {
         startTime = System.currentTimeMillis();
 
         this.control = control;
+
+        currentLevel = 0;
     }
     
     /**
@@ -200,6 +205,16 @@ public class State {
     }
 
     /**
+     * a mutator method for score
+     * 
+     * @param int 
+     */
+    public void setEnemyCount (int enemy)
+    {
+        this.enemyCount = enemy;
+    }
+
+    /**
      * a mutator method for isGameOver
      * 
      * @param boolean
@@ -318,5 +333,30 @@ public class State {
         Color black = new Color(pixel, true);
 
         return black;
+    }
+
+    /**
+     * an accessor method for currentLevel
+     * 
+     * @return level
+     */
+    public int getCurrentLevel () {
+        return this.currentLevel;
+    }
+
+    /**
+     * a mutator method for currentLevel
+     * 
+     * @return level
+     */
+    public void nextLevel () {
+        this.currentLevel = this.currentLevel + 1;
+        setEnemyCount(0);
+
+        if(currentLevel > 3){
+            youWin = true;
+            changeScore(getMoney());
+            addGameObject(new YouWin(control, this));
+        }
     }
 }

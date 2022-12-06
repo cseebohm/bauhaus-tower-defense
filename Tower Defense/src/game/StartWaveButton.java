@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
 
-public class TowerBButton extends GameObject implements Clickable{
+public class StartWaveButton extends GameObject implements Clickable{
 
     Control control;
     State state;
@@ -22,7 +22,7 @@ public class TowerBButton extends GameObject implements Clickable{
      * @param control
      * @param state
      */
-    public TowerBButton(Control control, State state){
+    public StartWaveButton(Control control, State state){
         isVisible = true;
         isExpired = false;
 
@@ -46,18 +46,21 @@ public class TowerBButton extends GameObject implements Clickable{
      */
     public void draw(Graphics g) {
         //location of button
-        int x = 510;
+        int x = 560;
         int y = 120;
         
         //draw button
         g.setColor(Color.white);
         g.fillRoundRect(x, y, 26, 26, 5,5);
 
-        g.drawImage(control.getImage("towerB.png"), x+3, y+3, 20,20, null);
+        //g.setColor(Color.BLACK);
+        //g.setFont(new Font( "Serif", Font.PLAIN, 12));
+        //String level = String.valueOf(state.getCurrentLevel() + 1);
+        //g.drawString(level, x+9, y+16);
 
         g.setColor(Color.black);
 		g.setFont(new Font( "Serif", Font.PLAIN, 9));
-        g.drawString("tower b", x, y+35);
+        g.drawString("start level", x, y+35);
     }
     
     /**
@@ -65,15 +68,10 @@ public class TowerBButton extends GameObject implements Clickable{
      */
     public void consumeClick() {
         //if in towerA area and mouseClick == TRUE
-        if(control.getMouseX()>510 && control.getMouseY()>120 && control.getMouseX()<536 && control.getMouseY()<146 && control.getClick())
+        if(control.getMouseX()>560 && control.getMouseY()>120 && control.getMouseX()<586 && control.getMouseY()<146 && control.getClick())
             {
-                //only buy tower if money > $500
-                if(state.getMoney()>=500)
-                {
-                    //add tower and charge money
-                    state.addGameObject(new TowerB(control, state));
-                    state.changeMoney(-500);
-                }
+                //set level to next level
+                state.nextLevel();
             }
     }
     
