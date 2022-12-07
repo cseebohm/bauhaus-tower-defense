@@ -52,11 +52,12 @@ public class TowerB extends Tower{
         if(!isMoving){
             this.target = state.findNearestEnemy(currentLoc);
 
-            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget) && (state.getTotalTime() - timeFired) > .75 * Math.pow(10,3))
+            if(!(this.target == null) && state.getDistance(currentLoc, target.getLoc()) < 150 && !(this.target == currentTarget) && (state.getTotalTime() - timeFired) > (.75 * Math.pow(10,3)))
             {            
                 this.currentTarget = this.target;
                 AttackB fire = new AttackB(60, control, state, target, currentLoc);
                 state.addGameObject(fire);
+                timeFired = state.getTotalTime();
             }
         }
 	}
